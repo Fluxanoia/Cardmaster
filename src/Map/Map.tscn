@@ -1,0 +1,174 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://src/Utils/LoadScreen.gd" type="Script" id=1]
+[ext_resource path="res://src/Map/Areas/Village.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Utils/TutorialMessage.gd" type="Script" id=3]
+[ext_resource path="res://gres/game_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://images/ui/controls/DPAD_all.png" type="Texture" id=5]
+[ext_resource path="res://src/Map/Map.gd" type="Script" id=6]
+[ext_resource path="res://images/ui/controls/wasd.png" type="Texture" id=7]
+[ext_resource path="res://images/ui/controls/joystickL_top.png" type="Texture" id=8]
+[ext_resource path="res://images/ui/controls/space.png" type="Texture" id=9]
+[ext_resource path="res://images/ui/controls/buttonL2.png" type="Texture" id=10]
+[ext_resource path="res://images/ui/controls/buttonR2.png" type="Texture" id=11]
+[ext_resource path="res://images/ui/controls/mouseRight.png" type="Texture" id=12]
+[ext_resource path="res://images/ui/controls/buttonR1.png" type="Texture" id=13]
+[ext_resource path="res://images/ui/controls/q.png" type="Texture" id=14]
+[ext_resource path="res://images/ui/controls/buttonL1.png" type="Texture" id=15]
+[ext_resource path="res://images/ui/controls/e.png" type="Texture" id=16]
+[ext_resource path="res://images/ui/controls/arrowLeft.png" type="Texture" id=17]
+[ext_resource path="res://images/ui/controls/arrowDown.png" type="Texture" id=18]
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Village" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="LoadScreen" type="Sprite" parent="CanvasLayer"]
+z_index = 100
+script = ExtResource( 1 )
+
+[node name="Tutorials" type="Node" parent="."]
+
+[node name="Walk" type="Label" parent="Tutorials"]
+margin_left = 120.0
+margin_top = 330.0
+margin_right = 240.0
+margin_bottom = 366.0
+custom_fonts/font = ExtResource( 4 )
+text = "Walk"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+img_1 = ExtResource( 5 )
+img_2 = ExtResource( 8 )
+img_3 = ExtResource( 7 )
+
+[node name="Jump" type="Label" parent="Tutorials"]
+margin_left = 120.0
+margin_top = 500.0
+margin_right = 240.0
+margin_bottom = 536.0
+custom_fonts/font = ExtResource( 4 )
+text = "Jump"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+img_1 = ExtResource( 10 )
+img_2 = ExtResource( 9 )
+
+[node name="Attack" type="Label" parent="Tutorials"]
+margin_left = 540.0
+margin_top = 255.0
+margin_right = 680.0
+margin_bottom = 291.0
+custom_fonts/font = ExtResource( 4 )
+text = "Attack"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+img_1 = ExtResource( 11 )
+img_2 = ExtResource( 12 )
+
+[node name="DeckCycle" type="Label" parent="Tutorials"]
+margin_left = 915.0
+margin_top = 353.0
+margin_right = 1165.0
+margin_bottom = 428.0
+custom_fonts/font = ExtResource( 4 )
+text = "Flick through
+your deck"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+img_1 = ExtResource( 15 )
+img_2 = ExtResource( 13 )
+img_3 = ExtResource( 14 )
+img_4 = ExtResource( 16 )
+
+[node name="DropThru" type="Label" parent="Tutorials"]
+margin_left = 1758.61
+margin_top = 871.465
+margin_right = 2034.61
+margin_bottom = 985.465
+custom_fonts/font = ExtResource( 4 )
+text = "Move DOWN
+to drop through
+platforms"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+img_1 = ExtResource( 18 )
+
+[node name="WallSlide" type="Label" parent="Tutorials"]
+margin_left = 585.639
+margin_top = 1055.45
+margin_right = 785.639
+margin_bottom = 1091.45
+custom_fonts/font = ExtResource( 4 )
+text = "Wall slide"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+img_1 = ExtResource( 17 )
+
+[node name="WallJump" type="Label" parent="Tutorials"]
+margin_left = 576.73
+margin_top = 1255.01
+margin_right = 832.73
+margin_bottom = 1369.01
+custom_fonts/font = ExtResource( 4 )
+text = "Jump while
+wall sliding to
+wall jump"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NothingToSee" type="Label" parent="Tutorials"]
+margin_left = 2276.2
+margin_top = 395.651
+margin_right = 2520.2
+margin_bottom = 470.651
+custom_fonts/font = ExtResource( 4 )
+text = "Nothing to see
+here"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thanks" type="Label" parent="Tutorials"]
+margin_left = 2800.0
+margin_top = 388.235
+margin_right = 3124.0
+margin_bottom = 580.235
+custom_fonts/font = ExtResource( 4 )
+text = "Thanks for
+Playing!
+
+Don't forget
+to leave feedback!"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/Entities/Player/Player.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "die"
+length = 1.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ "knockdown", false, 0, 0 ],
+"method": "set_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [  ],
+"method": "progress_animation"
+}, {
+"args": [ true ],
+"method": "set_dead"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "fall", true, 12 ],
+"method": "set_animation"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle", true, 45 ],
+"method": "set_animation"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "jump", false, 5 ],
+"method": "set_animation"
+}, {
+"args": [  ],
+"method": "audio_footstep"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.7
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "run", true, 7 ],
+"method": "set_animation"
+}, {
+"args": [  ],
+"method": "audio_footstep"
+}, {
+"args": [  ],
+"method": "audio_footstep"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.2, 0 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "slide_wall", true, 12 ],
+"method": "set_animation"
+}, {
+"args": [ "slide_wall", true, 12, 0 ],
+"method": "set_animation"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 1.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "walk", true, 12 ],
+"method": "set_animation"
+}, {
+"args": [  ],
+"method": "audio_footstep"
+}, {
+"args": [  ],
+"method": "audio_footstep"
+} ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+method_call_mode = 1
+anims/die = SubResource( 1 )
+anims/fall = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/run = SubResource( 5 )
+anims/slide_wall = SubResource( 6 )
+anims/walk = SubResource( 7 )
+
+[node name="FloorRaycast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 0 )
+
+[node name="FootstepStream" type="AudioStreamPlayer" parent="."]
+bus = "EntitySFX"
+
+[node name="AttackStream" type="AudioStreamPlayer" parent="."]
+bus = "EntitySFX"
+
+[node name="DamageStream" type="AudioStreamPlayer" parent="."]
